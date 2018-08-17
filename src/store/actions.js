@@ -1,6 +1,6 @@
-export const DROP_PIECE = 'DROP_PIECE'
+export const DROP_CHECKER = 'DROP_CHECKER'
 
-export const dropPiece = col => ({
-    type: DROP_PIECE,
-    col
+export const dropChecker = col => ({
+    type: DROP_CHECKER,
+    payload: col
 })
