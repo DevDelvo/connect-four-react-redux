@@ -35,12 +35,12 @@
   cursor: pointer;
 }
 
-.cell .p1 {
+.cell.p1 {
  background-color: black;
  color: white;
 }
 
-.cell .p2 {
+.cell.p2 {
   background-color: red;
   color: black;
 }

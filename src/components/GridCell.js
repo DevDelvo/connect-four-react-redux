@@ -9,8 +9,19 @@ class GridCell extends React.Component {
     }
 
     render() {
+        const { board, x, y } = this.props;
+
+        let classes = 'cell';
+        if (board[x][y] !== undefined) {
+            if (board[x][y] === 'red') {
+                classes += ' p2';
+            } else {
+                classes += ' p1';
+            }
+        }
+
         return (
-            <div className="cell" onClick={() => this.handleClick()}>
+            <div className={classes} onClick={() => this.handleClick()}>
                 <p>{this.props.x}, {this.props.y}</p>
             </div>
         )
@@ -18,8 +29,8 @@ class GridCell extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    // board: state.board,
-    // turn: state.turn,
+    board: state.board,
+    currentTurn: state.currentTurn,
 });
 const mapDispatchToProps = dispatch => ({
     dropChecker: col => dispatch(dropChecker(col))
