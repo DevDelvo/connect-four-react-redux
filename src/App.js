@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 
-import GridCell from './components/GridCell'
 import Board from './components/Board'
 
 class App extends Component {

@@ -18,7 +18,9 @@ class Board extends Component {
         const { x, y } = this.props;
         const board = this.makeBoard(x, y);
         return (
-            board
+            <div className="board">
+                {board}
+            </div>
         )
 
     }
