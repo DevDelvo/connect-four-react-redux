@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { dropChecker } from '../store/actions'
+
 class GridCell extends React.Component {
     handleClick() {
         const column = this.props.x;
