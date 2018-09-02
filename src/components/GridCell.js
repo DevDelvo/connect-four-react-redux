@@ -5,7 +5,7 @@ import { dropChecker } from '../store/actions'
 class GridCell extends React.Component {
     handleClick() {
         const column = this.props.x;
-        console.log(`Clicked on column ${this.props.x} and row ${this.props.y}`)
+        // console.log(`Clicked on column ${this.props.x} and row ${this.props.y}`)
         this.props.dropChecker(column);
     }
 
