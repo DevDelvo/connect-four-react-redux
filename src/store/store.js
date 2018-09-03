@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { DROP_CHECKER } from './actions'
+import { DROP_CHECKER, RESET_GAME } from './actions'
 
 const board = [
     [], //col 1
@@ -38,6 +38,10 @@ const reducer = (state = initialState, action) => {
                         gameMessage: state.currentTurn === 'red' ? 'It is black\'s turn!' : 'It is red\'s turn!',
                         board: board,
                     }
+                }
+        case RESET_GAME:
+                return {
+                    ...initialState
                 }
         default: 
             return state;

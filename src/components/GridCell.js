@@ -7,7 +7,7 @@ class GridCell extends React.Component {
         const column = this.props.x;
         // console.log(`Clicked on column ${this.props.x} and row ${this.props.y}`)
         this.props.dropChecker(column);
-        console.log(this.props.board[0])
+        // console.log(this.props.board[0])
     }
 
     render() {
