@@ -7,6 +7,7 @@ class GridCell extends React.Component {
         const column = this.props.x;
         // console.log(`Clicked on column ${this.props.x} and row ${this.props.y}`)
         this.props.dropChecker(column);
+        console.log(this.props.board[0])
     }
 
     render() {
@@ -14,10 +15,10 @@ class GridCell extends React.Component {
 
         let classes = 'cell empty';
         if (board[x][y] !== undefined) {
-            if (board[x][y] === 'red') {
+            if (board[x][y] === 'red') { //adds the p2 class to the class, CSS style will make it a red circl
                 classes += ' p2';
             } else {
-                classes += ' p1';
+                classes += ' p1'; //otherwise it adds p1, which makes it a black circle
             }
         }
 

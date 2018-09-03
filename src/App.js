@@ -6,12 +6,12 @@ import Board from './components/Board'
 
 class App extends Component {
   render() {
-    const { currentTurn } = this.props;
+    const { currentTurn, gameMessage } = this.props;
     return (
       <div className="App">
         Connect Four
         <Board x={7} y={5}/>
-        <span>It is {currentTurn}'s turn!</span>
+        <span>{gameMessage}</span>
       </div>
     );
   }
@@ -19,6 +19,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   currentTurn: state.currentTurn,
+  gameMessage: state.gameMessage,
 });
 
 export default connect(mapStateToProps, null)(App);

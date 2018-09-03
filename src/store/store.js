@@ -13,20 +13,31 @@ const board = [
 
 const initialState = {
     currentTurn: 'red',
-    board: board
+    gameMessage: 'It is red\'s turn!',
+    board: board,
+    winner: false,
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case DROP_CHECKER:
-                console.log(state.currentTurn + 'player dropping onto column ' + action.payload)
                 const tile = state.currentTurn;
                 const col = state.board[action.payload].concat(tile); // new row
                 const board = state.board.slice(); // copy of board
-                board[action.payload] = col; // update column with new tile
-                return {
-                    currentTurn: state.currentTurn === 'red' ? 'black' : 'red',
-                    board: board,
+                if (state.board[action.payload].length >= 6) {
+                    console.log('Column is full! Pick another column!')
+                    return {
+                        currentTurn: state.currentTurn,
+                        gameMessage: 'Column is full! Pick another column!',
+                        board: board,
+                    }
+                } else {
+                    board[action.payload] = col; // update column with new tile
+                    return {
+                        currentTurn: state.currentTurn === 'red' ? 'black' : 'red', //changes player turn
+                        gameMessage: state.currentTurn === 'red' ? 'It is black\'s turn!' : 'It is red\'s turn!',
+                        board: board,
+                    }
                 }
         default: 
             return state;
