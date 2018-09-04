@@ -138,10 +138,10 @@ const reducer = (state = initialState, action) => {
                     board[action.payload] = col; // update column with new tile
                     const row = board[action.payload].length - 1;
                     const column = action.payload;
+                    const winner = checkWinner(row, column, board, state.currentTurn)
                     console.log('player: ', tile, 'row: ', row, 'col: ', column)
-                    if (checkWinner(row, column, board, state.currentTurn)) {
-                        const winner = checkWinner(row, column, board, state.currentTurn)
-                        console.log('winner', checkWinner(row, column, board, state.currentTurn))
+                    if (winner) {
+                        console.log('winner', winner)
                         return {
                             board: board,
                             gameMessage: `${winner} is the winner!!!`,
@@ -171,6 +171,9 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const store = createStore(reducer);
+const store = createStore(
+    reducer, 
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
