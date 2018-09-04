@@ -24,14 +24,14 @@ const reducer = (state = initialState, action) => {
                 const tile = state.currentTurn;
                 const col = state.board[action.payload].concat(tile); // new row
                 const board = state.board.slice(); // copy of board
-                if (state.board[action.payload].length >= 6) {
-                    console.log('Column is full! Pick another column!')
+                // console.log(tile + ' is dropping into column ' + action.payload)
+                if (state.board[action.payload].length >= 6) { // if the column is full
                     return {
-                        currentTurn: state.currentTurn,
+                        currentTurn: state.currentTurn, // current turn doesnt change
                         gameMessage: 'Column is full! Pick another column!',
                         board: board,
                     }
-                } else {
+                } else { // if the column isnt full
                     board[action.payload] = col; // update column with new tile
                     return {
                         currentTurn: state.currentTurn === 'red' ? 'black' : 'red', //changes player turn
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
                 }
         case RESET_GAME:
                 return {
-                    ...initialState
+                    ...initialState //reset everything
                 }
         default: 
             return state;
