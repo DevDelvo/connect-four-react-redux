@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { dropChecker, gameWinner } from '../store/actions'
+import { dropChecker } from '../store/actions'
 
 class GridCell extends React.Component {
     handleClick() {
         const column = this.props.x
-        const row = this.props.board[column].length;
-
+        // const row = this.props.board[column].length;
         // console.log(`Placed at column ${column} and row ${row}`)
         this.props.dropChecker(column);
     }
@@ -37,7 +36,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     dropChecker: col => dispatch(dropChecker(col)),
-    gameWinner: player => dispatch(dropChecker(player)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCell);

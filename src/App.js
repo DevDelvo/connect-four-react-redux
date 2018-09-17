@@ -10,10 +10,10 @@ class App extends Component {
     const { gameMessage, resetGame } = this.props;
     return (
       <div className="App">
-        Connect Four
+        <div className="title">Connect Four</div>
         <Board x={7} y={5}/>
         <span>{gameMessage}</span>
-        <div><button onClick={() => resetGame()}>Reset Game</button></div>
+        <div className="button-container"><button className="reset-button" onClick={() => resetGame()}>Reset Game</button></div>
       </div>
     );
   }
