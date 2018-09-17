@@ -19,7 +19,7 @@
 
 .board {
   display: table;
-  margin: 40px auto; /*40px margin on top, bottom and centers table*/
+  margin: 20px auto; /*40px margin on top, bottom and centers table*/
 }
 
 body {
