@@ -124,6 +124,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case DROP_CHECKER:
+            if (state.winner === false) {
                 const tile = state.currentTurn;
                 const col = state.board[action.payload].concat(tile); // new row
                 const board = state.board.slice(); // copy of board
@@ -152,9 +153,16 @@ const reducer = (state = initialState, action) => {
                         currentTurn: state.currentTurn === 'red' ? 'black' : 'red', //changes player turn
                         gameMessage: state.currentTurn === 'red' ? 'It is black\'s turn!' : 'It is red\'s turn!',
                         board: board,
-                        
+                        winner: false,
                     }
                 }
+            } else if (state.winner === true) {
+                return { 
+                    ...state,
+                    winner: true,
+                    gameMessage: 'Press reset to begin a new game!'
+                }
+            }
         case RESET_GAME:
                 return {
                     ...initialState //reset everything
