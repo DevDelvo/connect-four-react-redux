@@ -11,7 +11,6 @@ const checkWinner = (row, col, board, currentTurn) => {
     if (winner) {
         return currentTurn
     }
-    // return winner;
 }
 
 const checkColumn = (column, board, currentTurn) => {
@@ -128,7 +127,6 @@ const reducer = (state = initialState, action) => {
                 const tile = state.currentTurn;
                 const col = state.board[action.payload].concat(tile); // new row
                 const board = state.board.slice(); // copy of board
-                // console.log(tile + ' is dropping into column ' + action.payload)
                 if (state.board[action.payload].length >= 6) { // if the column is full
                     return {
                         currentTurn: state.currentTurn, // current turn doesnt change
