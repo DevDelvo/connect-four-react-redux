@@ -18,7 +18,6 @@ const checkColumn = (column, board, currentTurn) => {
     let winPositions = [];
     for (let i = 0; i < board[column].length; i++) {
         if (board[column][i] === currentTurn) {
-            // console.log('column', board[column][i]);
             count++;
             winPositions.push({row: i, col: column});
             if (count === 4) {
@@ -54,19 +53,17 @@ const checkLeftDiagonal = (row, column, board, currentTurn) => {
     let startRow = row > column ? row - column : 0;
     let startCol = column > row ? column - row : 0;
 
-    for (let i = 0; i < board[column].length; i++) {
+    for (let i = 0; i <= 6; i++) {
         let r = startRow + i;
         let c = startCol + i;
-        if (r >= 6 || c >= 7) {
+        console.log(currentTurn, r, c)
+        if (r >= 6 || c >= 7) { //otherwise returns undefined
             break;
         }
-
-        if (board[r][c] === currentTurn) {
+        if (board[c][r] === currentTurn) {
             count++;
             winPositions.push({row: r, col: c});
-
             if (count === 4) {
-                console.log('left diagonal winner is', currentTurn);
                 return winPositions;
             }
         } else {
@@ -89,7 +86,7 @@ const checkRightDiagonal = (row, column, board, currentTurn) => {
             break;
         }
 
-        if (board[r][c] === currentTurn) {
+        if (board[c][r] === currentTurn) {
             count++;
             winPositions.push({row: r, col: c});
 
