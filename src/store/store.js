@@ -18,6 +18,7 @@ const checkColumn = (column, board, currentTurn) => {
     let winPositions = [];
     for (let i = 0; i < board[column].length; i++) {
         if (board[column][i] === currentTurn) {
+            // console.log('column', board[column][i]);
             count++;
             winPositions.push({row: i, col: column});
             if (count === 4) {
@@ -33,7 +34,7 @@ const checkColumn = (column, board, currentTurn) => {
 const checkRow = (row, board, currentTurn) => {
     let count = 0;
     let winPositions = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <= 6; i++) {
         if (board[i][row] === currentTurn) {
             count++;
             winPositions.push({row: row, col: i});
@@ -50,10 +51,10 @@ const checkRow = (row, board, currentTurn) => {
 const checkLeftDiagonal = (row, column, board, currentTurn) => {
     let count = 0;
     let winPositions = [];
-    let startRow = row > column ? row -column : 0;
+    let startRow = row > column ? row - column : 0;
     let startCol = column > row ? column - row : 0;
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < board[column].length; i++) {
         let r = startRow + i;
         let c = startCol + i;
         if (r >= 6 || c >= 7) {
@@ -81,7 +82,7 @@ const checkRightDiagonal = (row, column, board, currentTurn) => {
     let startRow = row + column <= 5 ? row + column : 5;
     let startCol = row + column <= 5 ? 0 : (row + column) - startRow;
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < board[column].length; i++) {
         let r = startRow - i;
         let c = startCol + i;
         if (r < 0 || c >= 7) {
@@ -138,7 +139,7 @@ const reducer = (state = initialState, action) => {
                     const row = board[action.payload].length - 1;
                     const column = action.payload;
                     const winner = checkWinner(row, column, board, state.currentTurn)
-                    console.log('player: ', tile, 'row: ', row, 'col: ', column)
+                    // console.log('player: ', tile, 'row: ', row, 'col: ', column)
                     if (winner) {
                         console.log('winner', winner)
                         return {
@@ -155,12 +156,13 @@ const reducer = (state = initialState, action) => {
                     }
                 }
             } else if (state.winner === true) {
-                return { 
+                return {
                     ...state,
                     winner: true,
                     gameMessage: 'Press reset to begin a new game!'
                 }
             }
+            break;
         case RESET_GAME:
                 return {
                     ...initialState //reset everything
@@ -172,13 +174,13 @@ const reducer = (state = initialState, action) => {
                     board: board,
                     winner: true,
                 }
-        default: 
+        default:
             return state;
     }
 }
 
 const store = createStore(
-    reducer, 
+    reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
